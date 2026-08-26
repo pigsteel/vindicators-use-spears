@@ -1,0 +1,5 @@
+classTweaker v2 official
+
+accessible method net/minecraft/client/renderer/entity/LivingEntityRenderer addLayer (Lnet/minecraft/client/renderer/entity/layers/RenderLayer;)Z
+
+extend-enum net/minecraft/world/entity/monster/illager/AbstractIllager$IllagerArmPose VINDICATORS_USE_SPEARS_SPEAR

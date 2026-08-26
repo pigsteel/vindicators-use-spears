@@ -7,10 +7,6 @@ stonecutter {
 	val (version, loader) = current.project.split('-', limit = 2)
 	properties.tags(version, loader)
 
-	replacements.string(current.parsed >= "1.21.11") {
-		replace("ResourceLocation", "Identifier")
-		replace("location()", "identifier()")
-	}
 	replacements.string(current.parsed >= "26.1.2") {
 		replace("FabricDataOutput", "FabricPackOutput")
 	}
@@ -29,12 +25,14 @@ platform {
 		required("fabricloader") {
 			fabricLikeVersionRange = ">=${prop("deps.fabric-loader")}"
 		}
-		optional("modmenu") {}
+		optional("modmenu") {
+			slug("modmenu")
+		}
 	}
 }
 
 loom {
-	accessWidenerPath = rootProject.file("src/main/resources/aw/${sc.current.version}.accesswidener")
+	accessWidenerPath = rootProject.file("src/main/resources/aw/${sc.current.version}.classtweaker")
 	runs.named("client") {
 		client()
 		ideConfigGenerated(true)

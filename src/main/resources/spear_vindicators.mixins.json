@@ -1,0 +1,17 @@
+{
+  "package": "com.github.pigsteel.spear_vindicators.mixin",
+  "required": true,
+  "minVersion": "0.8",
+  "compatibilityLevel": "${java}",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "IllagerArmPoseMixin",
+    "VindicatorMixin"
+  ],
+  "client": [
+    "client.IllagerModelMixin",
+    "client.VindicatorRendererMixin"
+  ]
+}

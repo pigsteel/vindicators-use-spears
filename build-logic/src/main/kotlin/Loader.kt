@@ -54,7 +54,7 @@ sealed class Loader(val id: String) {
 					ModrinthEnvironment.CLIENT_ONLY_SERVER_OPTIONAL, ModrinthEnvironment.CLIENT_AND_SERVER,
 					ModrinthEnvironment.CLIENT_OR_SERVER_PREFERS_BOTH, ModrinthEnvironment.CLIENT_OR_SERVER -> "*"
 				},
-				accessWidener = "aw/${ctx.currentMcVersion}.accesswidener",
+				accessWidener = "aw/${ctx.currentMcVersion}.classtweaker",
 				entrypoints = mapOf(
 					"main" to listOf("${ctx.modGroup}.${ctx.modId}.platform.fabric.FabricEntrypoint"),
 					"client" to listOf("${ctx.modGroup}.${ctx.modId}.platform.fabric.FabricClientEntrypoint"),
@@ -72,7 +72,7 @@ sealed class Loader(val id: String) {
 
 	sealed class ForgeLike(id: String) : Loader(id) {
 		override val excludedResources = listOf(
-			"fabric.mod.json", "aw/*.accesswidener", ".cache"
+			"fabric.mod.json", "aw/*.classtweaker", ".cache"
 		)
 
 		override fun generateManifest(ctx: Context): String {
