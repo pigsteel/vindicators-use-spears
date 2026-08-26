@@ -45,10 +45,10 @@ public abstract class VindicatorRendererMixin {
 							if (state.armPose.equals(EnumExtensions.SPEAR)) {
 								state.rightArmPose = state.mainArm.equals(HumanoidArm.RIGHT) ? HumanoidModel.ArmPose.SPEAR : state.rightArmPose;
 								state.leftArmPose = !state.mainArm.equals(HumanoidArm.RIGHT) ? HumanoidModel.ArmPose.SPEAR : state.leftArmPose;
-								SpearVindicators.LOGGER.info(String.valueOf(state.rightArmPose));
 							}
 
-							super.submit(poseStack, submitNodeCollector, lightCoords, state, yRot, xRot);
+							this.submitArmWithItem(state, state.rightHandItemState, state.rightHandItemStack, HumanoidArm.RIGHT, poseStack, submitNodeCollector, lightCoords);
+							this.submitArmWithItem(state, state.leftHandItemState, state.leftHandItemStack, HumanoidArm.LEFT, poseStack, submitNodeCollector, lightCoords);
 						}
 					}
 				}
