@@ -2,7 +2,6 @@ package com.github.pigsteel.spear_vindicators;
 
 import com.github.pigsteel.spear_vindicators.platform.Platform;
 
-import com.github.pigsteel.spear_vindicators.util.EnumExtensions;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,11 +21,9 @@ public class SpearVindicators {
 	private static final Platform PLATFORM = createPlatformInstance();
 
 	public static void onInitialize() {
-		EnumExtensions.load();
 	}
 
 	public static void onInitializeClient() {
-		EnumExtensions.load();
 	}
 
 	static Platform xplat() {

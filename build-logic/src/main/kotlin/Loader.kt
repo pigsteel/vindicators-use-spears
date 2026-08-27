@@ -107,10 +107,11 @@ sealed class Loader(val id: String) {
 						version = ctx.baseVersion,
 						displayURL = ctx.homepageUrl,
 						modUrl = ctx.homepageUrl,
-						logoFile = "assets/icon.png",
+						iconFile = "assets/icon.png",
 						authors = ctx.authors.joinToString(", "),
 						credits = "${ctx.authors.joinToString(", ")} Contributors: ${ctx.contributors.joinToString(", ")}",
-						description = ctx.description
+						description = ctx.description,
+						enumExtensions = "enum/${ctx.stonecutter.current.version}.json"
 					)
 				),
 				dependencies = mapOf(ctx.modId to forgeDeps),

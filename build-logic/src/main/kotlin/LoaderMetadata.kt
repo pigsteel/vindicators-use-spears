@@ -39,16 +39,17 @@ data class ForgeManifest(
 
 @Serializable
 data class ForgeMod(
-	val modId: String,
-	val displayName: String,
-	val version: String,
-	val displayURL: String,
-	val modUrl: String,
-	val logoFile: String,
-	val authors: String,
-	val logoBlur: Boolean = false,
-	val credits: String,
-	val description: String
+    val modId: String,
+    val displayName: String,
+    val version: String,
+    val displayURL: String,
+    val modUrl: String,
+    val iconFile: String,
+    val authors: String,
+    val logoBlur: Boolean = false,
+    val credits: String,
+    val description: String,
+    val enumExtensions: String
 )
 
 @Serializable

@@ -1,26 +1,20 @@
 package com.github.pigsteel.spear_vindicators.mixin.client;
 
-import com.github.pigsteel.spear_vindicators.SpearVindicators;
-import com.github.pigsteel.spear_vindicators.util.EnumExtensions;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.effects.SpearAnimations;
-import net.minecraft.client.model.monster.illager.IllagerModel;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.VindicatorRenderer;
 import net.minecraft.client.renderer.entity.layers.ItemInHandLayer;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.IllagerRenderState;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.monster.illager.AbstractIllager;
-import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 @Mixin(VindicatorRenderer.class)
@@ -40,15 +34,24 @@ public abstract class VindicatorRendererMixin {
 						Objects.requireNonNull(instance);
 					}
 
+					@Override
 					public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int lightCoords, IllagerRenderState state, float yRot, float xRot) {
 						if (state.isAggressive) {
-							if (state.armPose.equals(EnumExtensions.SPEAR)) {
-								state.rightArmPose = state.mainArm.equals(HumanoidArm.RIGHT) ? HumanoidModel.ArmPose.SPEAR : state.rightArmPose;
-								state.leftArmPose = !state.mainArm.equals(HumanoidArm.RIGHT) ? HumanoidModel.ArmPose.SPEAR : state.leftArmPose;
+							if (state.armPose.equals(AbstractIllager.IllagerArmPose.ATTACKING) && state.getMainHandItemStack().is(ItemTags.SPEARS)) {
+								if (state.mainArm == HumanoidArm.RIGHT) {
+									state.rightArmPose = HumanoidModel.ArmPose.SPEAR;
+								} else {
+									state.leftArmPose = HumanoidModel.ArmPose.SPEAR;
+								}
+							} else {
+								if (state.mainArm == HumanoidArm.RIGHT) {
+									state.rightArmPose = HumanoidModel.ArmPose.EMPTY;
+								} else {
+									state.leftArmPose = HumanoidModel.ArmPose.EMPTY;
+								}
 							}
 
-							this.submitArmWithItem(state, state.rightHandItemState, state.rightHandItemStack, HumanoidArm.RIGHT, poseStack, submitNodeCollector, lightCoords);
-							this.submitArmWithItem(state, state.leftHandItemState, state.leftHandItemStack, HumanoidArm.LEFT, poseStack, submitNodeCollector, lightCoords);
+							super.submit(poseStack, submitNodeCollector, lightCoords, state, yRot, xRot);
 						}
 					}
 				}

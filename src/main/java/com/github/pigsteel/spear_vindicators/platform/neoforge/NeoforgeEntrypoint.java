@@ -2,14 +2,14 @@ package com.github.pigsteel.spear_vindicators.platform.neoforge;
 
 //? neoforge {
 
-/*import com.github.pigsteel.spear_vindicators.ModTemplate;
+/*import com.github.pigsteel.spear_vindicators.SpearVindicators;
 import net.neoforged.fml.common.Mod;
 
-@Mod(ModTemplate.MOD_ID)
+@Mod(SpearVindicators.MOD_ID)
 public class NeoforgeEntrypoint {
 
 	public NeoforgeEntrypoint() {
-		ModTemplate.onInitialize();
+		SpearVindicators.onInitialize();
 	}
 }
 *///?}

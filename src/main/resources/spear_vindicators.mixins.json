@@ -7,11 +7,13 @@
     "defaultRequire": 1
   },
   "mixins": [
-    "IllagerArmPoseMixin",
+    "RaidMixin",
     "VindicatorMixin"
   ],
   "client": [
     "client.IllagerModelMixin",
+    "client.IllagerRendererMixin",
+    "client.IllagerRenderStateMixin",
     "client.VindicatorRendererMixin"
   ]
 }

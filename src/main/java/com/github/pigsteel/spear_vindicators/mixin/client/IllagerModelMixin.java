@@ -1,11 +1,11 @@
 package com.github.pigsteel.spear_vindicators.mixin.client;
 
-import com.github.pigsteel.spear_vindicators.util.EnumExtensions;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.effects.SpearAnimations;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.monster.illager.IllagerModel;
 import net.minecraft.client.renderer.entity.state.IllagerRenderState;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.monster.illager.AbstractIllager;
 import org.spongepowered.asm.mixin.Final;
@@ -40,7 +40,7 @@ public class IllagerModelMixin<S extends IllagerRenderState> extends EntityModel
 	public void addSpearAnimation(S state, CallbackInfo ci) {
 		AbstractIllager.IllagerArmPose pose = state.armPose;
 
-		if(pose.equals(EnumExtensions.SPEAR)) {
+		if(pose.equals(AbstractIllager.IllagerArmPose.ATTACKING) && state.getMainHandItemStack().is(ItemTags.SPEARS)) {
 			if(state.mainArm == HumanoidArm.RIGHT) {
 				SpearAnimations.thirdPersonHandUse(this.rightArm, this.head, true, state.getUseItemStackForArm(HumanoidArm.RIGHT), state);
 			} else {
