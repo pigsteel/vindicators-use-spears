@@ -63,7 +63,6 @@ fun Project.configureModPublishing(ctx: Context) {
 	extensions.configure<ModPublishExtension>("publishMods") {
 		val mrStaging = envTrue("PUB_MODRINTH_STAGING")
 		val modrinthAccessToken = env("PUB_MODRINTH_TOKEN")
-		val curseforgeAccessToken = env("PUB_CURSEFORGE_TOKEN")
 
 		val githubEnabled = envTrue("PUB_GITHUB_ENABLE")
 		if (envTrue("PUB_DRY_RUN") || !envTrue("PUB_MODS_ENABLE")) {
@@ -98,7 +97,6 @@ fun Project.configureModPublishing(ctx: Context) {
 		}
 
 		modrinth(ctx, ctx.publishAdditionalVersions, mrStaging, modrinthAccessToken)
-		if (!mrStaging) curseforge(ctx, ctx.publishAdditionalVersions, curseforgeAccessToken)
 	}
 }
 
